@@ -20,7 +20,7 @@
             android:value="1" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="id.sch.smktelkom_mlg.privateassignment.xirpl131.showmovie.Sugar" />
+            android:value="id.sch.smktelkom_mlg.privateassignment.xirpl131.showmovie" />
 
         <activity
             android:name=".MainActivity"

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,18 +43,30 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
                 .with(context)
                 .load(place.urlgambar)
                 .into(holder.imageViewOtofPlace);
+        holder.buttonDelete.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                final Place place1 = pItem.get(position);
+                pItem.remove(position);
+                place1.delete();
+                PlaceAdapter.this.notifyDataSetChanged();
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return pItem.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewHeadPlace;
         public TextView textViewDescPlace;
         public ImageView imageViewOtofPlace;
+        public Button buttonDelete;
 
 
         public ViewHolder(View itemView) {
@@ -62,6 +75,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
             textViewHeadPlace = (TextView) itemView.findViewById(R.id.textViewHeadPlace);
             textViewDescPlace = (TextView) itemView.findViewById(R.id.textViewDescPlace);
             imageViewOtofPlace = (ImageView) itemView.findViewById(R.id.imageViewOtofPlace);
+            buttonDelete = (Button) itemView.findViewById(R.id.buttonDelete);
         }
     }
 

@@ -41,6 +41,7 @@ ArrayList<Place> pList = new ArrayList<>();
 
         pList.addAll(Place.listAll(Place.class));
         adapter.notifyDataSetChanged();
+
         return view;
     }
 
