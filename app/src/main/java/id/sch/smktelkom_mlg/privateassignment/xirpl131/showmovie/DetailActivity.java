@@ -1,10 +1,9 @@
 package id.sch.smktelkom_mlg.privateassignment.xirpl131.showmovie;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -23,7 +22,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DetailActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class DetailActivity extends AppCompatActivity{
     private Integer mPostkey = null;
     private static final String URL_DATA = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=c80bc9a66e56420299138e8252d062ed";
 
@@ -32,6 +33,13 @@ public class DetailActivity extends AppCompatActivity {
     public TextView textViewReview;
     public ImageView imageViewDetail;
     public String url;
+    public String urlGambar;
+    boolean isPressed = true;
+    Place place;
+    FloatingActionButton fab;
+    boolean isNew;
+    ArrayList<Place> pItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +55,16 @@ public class DetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (isPressed){
+                    doSave();
+                    Snackbar.make(view, "Pilihan anda telah ditambahkan ke favorit", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                }
+                else {
+                    Snackbar.make(view, "Movie Favorit Anda", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
 
@@ -63,8 +78,21 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+
             }
         });
+    }
+
+    private void doSave() {
+        String title = textViewHeadet.getText().toString();
+        String description = textViewDescet.getText().toString();
+        String urlgambar = urlGambar;
+            place = new Place(title, description, urlgambar);
+            place.save();
+
+
+
+
     }
 
     private void loadRecycleViewData() {

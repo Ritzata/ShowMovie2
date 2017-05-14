@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity
             setTitle("Detail");
 
         } else if (id == R.id.nav_slideshow) {
+            fragment = new PlaceFragment();
+            setTitle("Favorite");
 
         } else if (id == R.id.nav_manage) {
 
