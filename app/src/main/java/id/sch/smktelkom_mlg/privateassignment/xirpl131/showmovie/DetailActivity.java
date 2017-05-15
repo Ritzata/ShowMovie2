@@ -122,6 +122,8 @@ public class DetailActivity extends AppCompatActivity{
                                     .load(o.getJSONObject("multimedia").getString("src"))
                                     .into(imageViewDetail);
 
+                            urlGambar = o.getJSONObject("multimedia").getString("src");
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

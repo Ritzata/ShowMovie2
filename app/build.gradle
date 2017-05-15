@@ -1,6 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+//        config {
+//            keyAlias 'ShowMovie2'
+//            keyPassword 'ShowMovie2'
+//            storeFile file('E:/haloapp/ShowMovie/KeyShowMovie.jks')
+//            storePassword 'showmovie'
+//        }
+        config1 {
+            keyAlias 'ShowMovie'
+            keyPassword 'icha123'
+            storeFile file('E:/haloapp/ShowMovie/myandroidkey.jks')
+            storePassword 'icha123'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -10,12 +24,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config1
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config1
         }
+    }
+    productFlavors {
     }
 }
 
